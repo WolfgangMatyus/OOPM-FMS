@@ -151,7 +151,7 @@ public abstract class Flight implements Comparable<Flight> {
 			return false;
 
 		for(Passenger p : passengers) {
-			if (p.getBoarded().equals(this) == false)
+			if (this.equals(p.getBoarded()) == false)
 				return false;
 		}
 	return true;
