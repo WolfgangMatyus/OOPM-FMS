@@ -56,6 +56,8 @@ public class Main {
 	 * 
 	 * @return the demo data.
 	 */
+
+	/*
 	private static List<Flight> init() {
 
 		// ---------------- aircrafts
@@ -157,7 +159,7 @@ public class Main {
 
 		return flights;
 	}
-	
+	*/
 
 
 }

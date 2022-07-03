@@ -77,7 +77,7 @@ public class Passenger extends Person {
 	 */
 	@Override
 	public String toString() {
-		return String.format("%s [%s]", super.toString(), boarded == null ? " " : boarded.getFlightId());
+		return String.format("%s [%s]", super.toString(), boarded == null ? " " : boarded.getFlightID());
 	}
 
 	/**
