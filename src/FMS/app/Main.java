@@ -7,7 +7,8 @@ import java.util.*;
 
 import FMS.entities.*;
 import FMS.provided.*;
-import FMS.util.*;
+import FMS.util.DepartureComparator;
+import FMS.util.OriginMatcher;
 
 
 public class Main {
@@ -33,7 +34,42 @@ public class Main {
 	 *            command line arguments (not used)
 	 */
 	public static void main(String[] args) {
+		List<Flight> flights = init();
+		print(flights);
 
+		Collections.sort(flights);
+		print(flights);
+
+		List<Flight> viennaFlights = filter(flights, new OriginMatcher("VIE"));
+		print(viennaFlights);
+
+		viennaFlights.sort(new DepartureComparator());
+		print(viennaFlights);
+
+		export(viennaFlights, "departures_VIE.txt");
+
+	}
+
+	private static int export(List<Flight> flights, String filename){
+		int n = 0;
+		try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))){
+			for(Flight f : flights){
+				writer.write(f.toString() + "\n");
+				n++;
+			}
+		}catch (IOException e){
+			e.printStackTrace();
+		}
+		return n;
+	}
+
+	private static <T> java.util.List<T> filter(Collection<T> list, Matcher<T> matcher){
+		List<T> filtered = new LinkedList<>();
+		for(T t : list) {
+			if(matcher.match(t))
+				filtered.add(t);
+		}
+		return filtered;
 	}
 
 	/**
@@ -57,7 +93,7 @@ public class Main {
 	 * @return the demo data.
 	 */
 
-	/*
+
 	private static List<Flight> init() {
 
 		// ---------------- aircrafts
@@ -159,7 +195,5 @@ public class Main {
 
 		return flights;
 	}
-	*/
-
 
 }

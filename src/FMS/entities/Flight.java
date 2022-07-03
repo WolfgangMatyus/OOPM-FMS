@@ -101,8 +101,9 @@ public abstract class Flight implements Comparable<Flight> {
 		return new DateTime(departure);
 	}
 
-	public void setVessel(Aircraft vessel) {
+	public Flight setVessel(Aircraft vessel) {
 		this.vessel = vessel;
+		return this;
 	}
 
 	public abstract int getBonusMiles();
